@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homepage</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">.
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            flex-direction: column;
+            margin-top: auto; /* Push container to the bottom */
+        }
+        h1 {
+            text-align: center;
+            color: red;
+        }
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003080;
+        }
+        .delete-button {
+            background-color: #dc3545; /* Use a different color for delete */
+        }
+        .delete-button:hover {
+            background-color: #c82333; /* Hover color for delete */
+        }
+        .delete-button:active {
+            background-color: #bd2130; /* Active color for delete */
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Homepage</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <div class="post">
+                    <p style="color:green; font-size:20px">{{post.author.first_name}}</p>
+                    <img src="{{ post.picture.url }}" alt="Picture" width="300">
+                    <p>{{ post.message }}</p>
+                    <p>Hashtags:
+                        {% for hashtag in post.hashtags.all %}
+                            <span>#{{ hashtag.hashtags }}</span>
+                        {% endfor %}
+                    </p>
+                    <p>{{ post.timestamp }}</p>
+                    <p>Likes: {{ post.num_likes }}</p>
+                    <a href="{% url 'like_post' post.id %}">Like</a>
+                    <a href="{% url 'unlike_post' post.id %}">Unlike</a>
+                    <form method="post" action="{% url 'delete_post' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button" >Delete Post</button>
+                    </form>
+                    <details>
+                    <summary style="font-size: 20px">Comments:</summary>
+                    <ul>
+                        {% for comment in post.comments.all %}
+                            <p>{{ post.timestamp }}</p>
+                            <li><span style="color:blue">{{comment.user.first_name}}:</span>{{ comment.comments }}</li>
+                            <form method="post" action="{% url 'delete_comment' post.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-button" >Delete Comments</button>
+                            </form>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'add_comment' post.id %}">Add Comment</a>
+                    </details>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'upload_post' %}">Upload a Post</a>
+    <div class="container">
+        <p><form method="post" action="{% url 'homepage'%}">
+            {% csrf_token %}
+            <button type="submit">Homepage</button>
+        </form>
+        <form method="post" action="{% url 'setting' %}">
+            {% csrf_token %}
+            <button type="submit">Setting</button>
+        </form>
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <button type="submit">Profile</button>
+        </form></p>
+        <a href="{% url 'signout' %}" class="sign-out-button">Sign Out</a>
+    </div>
+</body>
+</html>

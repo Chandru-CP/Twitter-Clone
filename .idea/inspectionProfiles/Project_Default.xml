@@ -1,0 +1,35 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+          <option value="N802" />
+          <option value="N801" />
+          <option value="N812" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="django_tweet.django_profile.models.Post.objects" />
+          <option value="django_tweet.django_accounts.models.UserProfile.objects" />
+          <option value="django_tweet.django_setting.models.UserProfile.objects" />
+          <option value="django.db.models.fields.related.OneToOneField.username" />
+          <option value="django_tweet.django_homepage.models.Post.*" />
+          <option value="django_twitter.django_homepage.models.Post.*" />
+          <option value="django_twitter.django_accounts.models.objects" />
+          <option value="django_twitter.django_profile.models.Post.*" />
+          <option value="django_twitter.django_accounts.models.*" />
+          <option value="scrapy.http.request.form.*" />
+          <option value="django_homepage.models.Post.*" />
+          <option value="django_homepage.models.Comment.*" />
+          <option value="django_homepage.models.Hashtag.objects" />
+          <option value="api.models.UserDetail.objects" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

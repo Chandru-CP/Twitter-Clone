@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("{% load static %}{% static 'images/dashboard_image.jpg' %}");
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            width: 400px;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            opacity: 0.8;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        p {
+            margin-top: 10px;
+            color: #555;
+        }
+        form {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #4FAD27;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003080;
+        }
+    </style>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            flex-direction: column;
+            margin-top: auto; /* Push container to the bottom */
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Setting</h1>
+        <form method="post" action="{% url 'change_username' %}">
+            {% csrf_token %}
+            <button type="submit">change username</button>
+        </form>
+        <form method="post" action="{% url 'change_email' %}">
+            {% csrf_token %}
+            <button type="submit"> change email</button>
+        </form>
+        <form method="post" action="{% url 'change_mobile_number' %}">
+            {% csrf_token %}
+            <button type="submit">change mobile number</button>
+        </form>
+        <form method="post" action="{% url 'request-password-reset' %}">
+            {% csrf_token %}
+            <button type="submit">change password</button>
+        </form>
+        <p><a href="{% url 'signout' %}">Sign Out</a></p>
+    </div>
+<div class="container1">
+       <form method="post" action="{% url 'homepage'%}">
+        {% csrf_token %}
+        <button type="submit">Homepage</button>
+      <form method="post" action="{% url 'setting' %}">
+        {% csrf_token %}
+        <button type="submit">Setting</button>
+      <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        <button type="submit">Profile</button>
+    </form>
+    </form>
+    </form>
+</div>
+</body>
+</html>

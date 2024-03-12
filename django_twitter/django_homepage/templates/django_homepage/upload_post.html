@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Post</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 10px;
+            flex-direction: column;
+            margin-top: auto; /* Push container to the bottom */
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003080;
+        }
+    </style>
+</head>
+<body>
+        <h1>New Post</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="{{ form.picture.id_for_label }}">picture:</label>
+            {{ form.picture }}<br><br>
+            <label for="{{ form.message.id_for_label }}">message:</label>
+            {{ form.message }}<br><br>
+            <label for="{{ form.hashtags.id_for_label }}">hashtags:</label>
+            {{ form.hashtags }}<br><br>
+            <button type="submit">upload</button>
+        </form>
+    <div class="container">
+        <form method="post" action="{% url 'homepage' %}">
+            {% csrf_token %}
+            <button type="submit">Homepage</button>
+        </form>
+        <form method="post" action="{% url 'setting' %}">
+            {% csrf_token %}
+            <button type="submit">Setting</button>
+        </form>
+        <form method="post" action="{% url 'profile' %}">
+            {% csrf_token %}
+            <button type="submit">Profile</button>
+        </form>
+        <a href="{% url 'signout' %}" class="sign-out-button">Sign Out</a>
+    </div>
+</body>
+</html>
